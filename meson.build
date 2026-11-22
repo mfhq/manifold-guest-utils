@@ -1,4 +1,4 @@
-project('mfhost-run', 'c',
+project('manifold-guest-utils', 'c',
   meson_version: '>=1.4',
   default_options: ['c_std=gnu23', 'b_pie=true', 'warning_level=2'],
 
@@ -23,23 +23,11 @@ add_project_arguments(
   language: 'c',
 )
 
+version_c_args = ['-DPACKAGE_VERSION="@0@"'.format(meson.project_version())]
+
 # sd-varlink is part of libsystemd since version 257
 libsystemd_dep = dependency('libsystemd', version: '>= 257')
+gio_unix_dep = dependency('gio-unix-2.0', version: '>= 2.44')
 
-mfhost_run_exe = executable('mfhost-run',
-    ['mfhost-run.c'],
-    c_args: ['-DMFHOST_RUN_VERSION="@0@"'.format(meson.project_version())],
-    dependencies: [libsystemd_dep],
-    install: true,
-    install_dir: get_option('bindir'),
-)
-
-python_exe = find_program('python3', required: false)
-if python_exe.found()
-    test('mfhost-run',
-        python_exe,
-        args: [files('tests/test-mfhost-run.py'), '--program', mfhost_run_exe.full_path()],
-        depends: [mfhost_run_exe],
-        timeout: 60,
-    )
-endif
+subdir('src')
+subdir('tests')

@@ -24,7 +24,6 @@
 #include <gio/gio.h>
 #include <gio/gunixfdlist.h>
 
-#include "backport-autoptr.h"
 #include "common.h"
 
 #define PORTAL_BUS_NAME "org.freedesktop.portal.Desktop"

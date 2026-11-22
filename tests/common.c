@@ -21,7 +21,6 @@
 
 #include <gio/gio.h>
 
-#include "backport-autoptr.h"
 
 void
 setup_dbus_daemon (GSubprocess **dbus_daemon,

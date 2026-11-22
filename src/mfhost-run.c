@@ -417,7 +417,7 @@ main(int argc, char **argv)
                 mfhr_print_usage(stdout);
                 return EXIT_SUCCESS;
             case 'v':
-                printf(PROGRAM_NAME " " MFHOST_RUN_VERSION "\n");
+                printf(PROGRAM_NAME " " PACKAGE_VERSION "\n");
                 return EXIT_SUCCESS;
             default:
                 mfhr_print_usage(stderr);
